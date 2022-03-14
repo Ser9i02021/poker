@@ -1,0 +1,959 @@
+from random import randint
+
+mao1 = []
+mao2 = []
+mao3 = []
+mao4 = []
+
+deck = []
+
+maos_mesa = []
+mesa = []
+
+class Cartas():
+    def __init__(self, quant):
+        self.quant = quant
+    
+    def construir_deck(self):
+        naipes = ["M", "E", "C", "P"]
+        numeros = list(range(2, 15))
+        for num in numeros:
+            for np in naipes:
+                carta = str(num) + np
+                deck.append(carta)
+
+    def embaralhar(self):
+        for _ in range(self.quant):
+            while True:
+                carta = deck[randint(0, 51)]
+                if carta not in maos_mesa:
+                    maos_mesa.append(carta)
+                    break
+        for i in range(len(maos_mesa)):         
+            if 0 <= i < 2:
+                mao1.append(maos_mesa[i])
+            elif 2 <= i < 4:
+                mao2.append(maos_mesa[i])
+            elif 4 <= i < 6:
+                mao3.append(maos_mesa[i])
+            elif 6 <= i < 8:
+                mao4.append(maos_mesa[i])
+            else:
+                mesa.append(maos_mesa[i])
+
+
+
+
+maos = []
+mf_1 = []
+mf_2 = []
+mf_3 = []
+mf_4 = []
+
+p_pts = {}
+
+class Resultados():
+    
+    def formar_maos(self):
+        jg_1 = []
+        jg_2 = []
+        jg_3 = []
+        jg_4 = []
+        for player in p_ativos:
+            if player == 1:
+                ID = []
+                for carta in mao1:
+                    jg_1.append(carta)
+                for carta in mesa:
+                    jg_1.append(carta)
+                for carta in jg_1:
+                    for i in range(len(deck)):
+                        if deck[i] == carta:
+                            ID.append(i)
+                            break
+                jg_1 = []
+                ID.sort()
+                for i in range(len(ID) - 1, -1, -1):
+                    if len(deck[ID[i]]) == 3:
+                        num = int(deck[ID[i]][0] + deck[ID[i]][1])
+                        jg_1.append(num)
+                        jg_1.append(deck[ID[i]][2])
+                    else:
+                        jg_1.append(int(deck[ID[i]][0]))
+                        jg_1.append(deck[ID[i]][1])
+                for i in range(0, 14, 2):
+                    if jg_1[i] == 14:
+                        carta = "A" + jg_1[i + 1]
+                    elif jg_1[i] == 13:
+                        carta = "K" + jg_1[i + 1]
+                    elif jg_1[i] == 12:
+                        carta = "Q" + jg_1[i + 1]
+                    elif jg_1[i] == 11:
+                        carta = "J" + jg_1[i + 1]
+                    elif jg_1[i] == 10:
+                        carta = "10" + jg_1[i + 1]
+                    else:
+                        carta = str(jg_1[i]) + jg_1[i + 1]
+                    mf_1.append(carta)
+            
+            if player == 2:
+                ID = []
+                for carta in mao2:
+                    jg_2.append(carta)
+                for carta in mesa:
+                    jg_2.append(carta)
+                for carta in jg_2:
+                    for i in range(len(deck)):
+                        if deck[i] == carta:
+                            ID.append(i)
+                            break
+                jg_2 = []
+                ID.sort()
+                for i in range(len(ID) - 1, -1, -1):
+                    if len(deck[ID[i]]) == 3:
+                        num = int(deck[ID[i]][0] + deck[ID[i]][1])
+                        jg_2.append(num)
+                        jg_2.append(deck[ID[i]][2])
+                    else:
+                        jg_2.append(int(deck[ID[i]][0]))
+                        jg_2.append(deck[ID[i]][1])
+                for i in range(0, 14, 2):
+                    if jg_2[i] == 14:
+                        carta = "A" + jg_2[i + 1]
+                    elif jg_2[i] == 13:
+                        carta = "K" + jg_2[i + 1]
+                    elif jg_2[i] == 12:
+                        carta = "Q" + jg_2[i + 1]
+                    elif jg_2[i] == 11:
+                        carta = "J" + jg_2[i + 1]
+                    elif jg_2[i] == 10:
+                        carta = "10" + jg_2[i + 1]
+                    else:
+                        carta = str(jg_2[i]) + jg_2[i + 1]
+                    mf_2.append(carta)
+                    
+            if player == 3:
+                ID = []
+                for carta in mao3:
+                    jg_3.append(carta)
+                for carta in mesa:
+                    jg_3.append(carta)
+                for carta in jg_3:
+                    for i in range(len(deck)):
+                        if deck[i] == carta:
+                            ID.append(i)
+                            break
+                jg_3 = []
+                ID.sort()
+                for i in range(len(ID) - 1, -1, -1):
+                    if len(deck[ID[i]]) == 3:
+                        num = int(deck[ID[i]][0] + deck[ID[i]][1])
+                        jg_3.append(num)
+                        jg_3.append(deck[ID[i]][2])
+                    else:
+                        jg_3.append(int(deck[ID[i]][0]))
+                        jg_3.append(deck[ID[i]][1])
+                for i in range(0, 14, 2):
+                    if jg_3[i] == 14:
+                        carta = "A" + jg_3[i + 1]
+                    elif jg_3[i] == 13:
+                        carta = "K" + jg_3[i + 1]
+                    elif jg_3[i] == 12:
+                        carta = "Q" + jg_3[i + 1]
+                    elif jg_3[i] == 11:
+                        carta = "J" + jg_3[i + 1]
+                    elif jg_3[i] == 10:
+                        carta = "10" + jg_3[i + 1]
+                    else:
+                        carta = str(jg_3[i]) + jg_3[i + 1]
+                    mf_3.append(carta)
+                    
+            if player == 4:
+                ID = []
+                for carta in mao4:
+                    jg_4.append(carta)
+                for carta in mesa:
+                    jg_4.append(carta)
+                for carta in jg_4:
+                    for i in range(len(deck)):
+                        if deck[i] == carta:
+                            ID.append(i)
+                            break
+                jg_4 = []
+                ID.sort()
+                for i in range(len(ID) - 1, -1, -1):
+                    if len(deck[ID[i]]) == 3:
+                        num = int(deck[ID[i]][0] + deck[ID[i]][1])
+                        jg_4.append(num)
+                        jg_4.append(deck[ID[i]][2])
+                    else:
+                        jg_4.append(int(deck[ID[i]][0]))
+                        jg_4.append(deck[ID[i]][1])
+                for i in range(0, 14, 2):
+                    if jg_4[i] == 14:
+                        carta = "A" + jg_4[i + 1]
+                    elif jg_4[i] == 13:
+                        carta = "K" + jg_4[i + 1]
+                    elif jg_4[i] == 12:
+                        carta = "Q" + jg_4[i + 1]
+                    elif jg_4[i] == 11:
+                        carta = "J" + jg_4[i + 1]
+                    elif jg_4[i] == 10:
+                        carta = "10" + jg_4[i + 1]
+                    else:
+                        carta = str(jg_4[i]) + jg_4[i + 1]
+                    mf_4.append(carta)
+        if len(jg_1) == 14:
+            maos.append(1)
+            maos.append(jg_1)
+        if len(jg_2) == 14:
+            maos.append(2)
+            maos.append(jg_2)
+        if len(jg_3) == 14:
+            maos.append(3)
+            maos.append(jg_3)
+        if len(jg_4) == 14:
+            maos.append(4)
+            maos.append(jg_4)
+        Resultados().pontuacao(maos)
+
+    def pontuacao(self, lista_maos):
+        for i in range(1, len(lista_maos), 2):
+            Ranking(lista_maos[i], lista_maos[i - 1]).royal_flush()
+        Resultados().desempate()
+
+    def desempate(self):
+        print()
+        maior = 0
+        for plr, pt in p_pts.items():
+            if pt > maior:
+                maior = pt
+            print("Player %d: %.5f pontos; Mão: " % (plr, pt), end = "")
+            if plr == 1:
+                for c in mf_1:
+                    print(c, end = " ")
+            elif plr == 2:
+                for c in mf_2:
+                    print(c, end = " ")
+            elif plr == 3:
+                for c in mf_3:
+                    print(c, end = " ")
+            else:
+                for c in mf_4:
+                    print(c, end = " ")
+            print()
+            
+        print()
+        for plr, pt in p_pts.items():
+            if p_pts[plr] == maior:
+                print("Vencedor: Player %d, %.5f pontos; Quantia ganha: $%d" % (plr, maior, Aposta[0]))
+                break
+        Resultados().fim_de_jogo()
+        
+    def fim_de_jogo(self):
+        print()
+        print("Fim da partida")
+                
+
+
+
+
+
+
+
+
+class Ranking():
+    def __init__(self, jg, n_j):
+        self.jg = jg
+        self.n_j = n_j
+    
+    def royal_flush(self):
+        k = 0
+        for i in range(0, 5, 2):
+            if k == 1:
+                break
+            else:
+                rf = 1
+                num = self.jg[i]
+                if num == 14:
+                    np = self.jg[i + 1]
+                    q = i + 2
+                    while True:
+                        for j in range(q, 14, 2):
+                            if self.jg[j] == num - 1 and self.jg[j + 1] == np:
+                                num = self.jg[j]
+                                q += 2
+                                rf += 1
+                                continue
+                        if rf < 5:
+                            break
+                        else:
+                            print("Player %d: Royal Flush" % (self.n_j))
+                            k = 1
+                            p_pts[self.n_j] = 109
+                            break
+        if k == 0:
+            Ranking(self.jg, self.n_j).straight_flush()
+                
+                
+    def straight_flush(self):
+        k = 0
+        for i in range(0, 5, 2):
+            if k == 1:
+                break
+            else:
+                sf = 1
+                sf_c = []
+                n = self.jg[i]
+                num = self.jg[i]
+                np = self.jg[i + 1]
+                sf_c.append(num)
+                sf_c.append(np)
+                q = i + 2
+                while True:
+                    for j in range(q, 14, 2):
+                        if self.jg[j] == num - 1 and self.jg[j + 1] == np:
+                            num = self.jg[j]
+                            sf_c.append(num)
+                            sf_c.append(np)
+                            q += 2
+                            sf += 1
+                            continue
+                    if sf < 5:
+                        break
+                    else:
+                        print("Player %d: Straight Flush" % (self.n_j))
+                        k = 1
+                        pd = 0
+                        c = 1
+                        for k in range(0, 14, 2):
+                            r = 0
+                            for l in range(0, len(sf_c), 2):
+                                if self.jg[k] != sf_c[l]:
+                                    r += 1
+                                else:
+                                    if self.jg[k + 1] != sf_c[l + 1]:
+                                        r += 1
+                            if r == 5:
+                                pd += self.jg[k] / (100 * c)
+                                c *= 100
+                        p_pts[self.n_j] = 94 + n + pd
+                        break
+        if k == 0:
+            Ranking(self.jg, self.n_j).four_of_a_kind()
+            
+        
+    def four_of_a_kind(self):
+        k = 0
+        for i in range(0, 8, 2):
+            if k == 1:
+                break
+            else:
+                fk = 1
+                num = self.jg[i]
+                for j in range(i + 2, i + 8, 2):
+                    if self.jg[j] == num:
+                        fk += 1
+                        if fk == 4:
+                            print("Player %d: Four of a Kind" % (self.n_j))
+                            k = 1
+                            pd = 0
+                            c = 1
+                            for k in range(0, 14, 2):
+                                if self.jg[k] != num:
+                                    pd += self.jg[k] / (100 * c)
+                                    c *= 100
+                            p_pts[self.n_j] = 81 + num + pd
+                            break
+                    else:
+                        break
+        if k == 0:
+            Ranking(self.jg, self.n_j).full_house()
+            
+            
+    def full_house(self):
+        k = 0
+        for i in range(0, 10, 2):
+            if k == 1:
+                break
+            else:
+                Tk = 1
+                num = self.jg[i]
+                for j in range(i + 2, i + 6, 2):
+                    if self.jg[j] == num:
+                        Tk += 1
+                        if Tk == 3:
+                            n = num
+                            k = 1
+                    else:
+                        break
+        if k == 1:
+            l = 0
+            for i in range(0, 12, 2):
+                if l == 1:
+                    break
+                else:
+                    if self.jg[i] != n:
+                        num = self.jg[i]
+                        for j in range(i + 2, i + 4, 2):
+                            if self.jg[j] == num:
+                                l = 1
+                            else:
+                                break
+            if l == 1:
+                print("Player %d: Full House" % (self.n_j))
+                pd = 0
+                c = 1
+                if n > num:
+                    for k in range(0, 14, 2):
+                        if self.jg[k] != n and self.jg[k] != num:
+                            pd += self.jg[k] / (100 * c)
+                            c *= 100
+                    p_pts[self.n_j] = 68 + n + (num / 100) + pd
+                else:
+                    for k in range(0, 14, 2):
+                        if self.jg[k] != n and self.jg[k] != num:
+                            pd += self.jg[k] / (100 * c)
+                            c *= 100
+                    p_pts[self.n_j] = 68 + num + (n / 100) + pd
+            else:
+                Ranking(self.jg, self.n_j).flush()
+        else:
+            Ranking(self.jg, self.n_j).flush()
+            
+            
+    def flush(self):
+        k = 0 
+        for i in range(0, 5, 2):
+            if k == 1:
+                break
+            else:
+                f = 1
+                f_c = []
+                num = self.jg[i]
+                np = self.jg[i + 1]
+                for j in range(i + 2, 14, 2):
+                    if self.jg[j + 1] == np:
+                        f += 1
+                        f_c.append(self.jg[j])
+                        if f == 5:
+                            print("Player %d: Flush" % (self.n_j))
+                            k = 1
+                            pd = 0
+                            c = 1
+                            for k in range(len(f_c)):                                
+                                pd += f_c[k] / (100 * c)
+                                c *= 100
+                            p_pts[self.n_j] = 55 + num + pd
+                            break
+        if k == 0:
+            Ranking(self.jg, self.n_j).straight()
+            
+            
+    def straight(self):
+        k = 0
+        for i in range(0, 5, 2):
+            if k == 1:
+                break
+            else:
+                s_c = []
+                s = 0
+                n = self.jg[i]
+                s_c.append(n)
+                num = self.jg[i]
+                np = self.jg[i + 1]
+                s_c.append(np)
+                q = i + 2
+                while True:
+                    for j in range(q, 14, 2):
+                        if self.jg[j] == num - 1:
+                            num = self.jg[j]
+                            s_c.append(num)
+                            s_c.append(self.jg[j + 1])
+                            q += 2
+                            s += 1
+                            continue
+                    if s < 5:
+                        break
+                    else:
+                        print("Player %d: Straight" % (self.n_j))
+                        k = 1
+                        pd = 0
+                        c = 1
+                        for k in range(0, 14, 2):
+                            r = 0
+                            for l in range(0, len(s_c), 2):
+                                if self.jg[k] != s_c[l]:
+                                    r += 1
+                                else:
+                                    if self.jg[k + 1] != s_c[l + 1]:
+                                        r += 1
+                            if r == 5:
+                                pd += self.jg[k] / (100 * c)
+                                c *= 100
+                        p_pts[self.n_j] = 42 + n + pd
+                        break
+        if k == 0:
+            Ranking(self.jg, self.n_j).three_of_a_kind()
+            
+            
+    def three_of_a_kind(self):
+        k = 0
+        for i in range(0, 10, 2):
+            if k == 1:
+                break
+            else:
+                Tk = 1
+                num = self.jg[i]
+                for j in range(i + 2, i + 6, 2):
+                    if self.jg[j] == num:
+                        Tk += 1
+                        if Tk == 3:
+                            print("Player %d: Three of a Kind" % (self.n_j))
+                            k = 1
+                            pd = 0
+                            c = 1
+                            for k in range(0, 14, 2):
+                                if self.jg[k] != num:
+                                    pd += self.jg[k] / (100 * c)
+                                    c *= 100
+                            p_pts[self.n_j] = 39 + num + pd
+                    else:
+                        break
+        if k == 0:
+            Ranking(self.jg, self.n_j).two_pair()
+            
+            
+    def two_pair(self):
+        k = 0
+        for i in range(0, 12, 2):
+            if k == 1:
+                break
+            else:
+                num = self.jg[i]
+                for j in range(i + 2, i + 4, 2):
+                    if self.jg[j] == num:
+                        n = num
+                        k = 1
+        if k == 1:
+            l = 0
+            for i in range(0, 12, 2):
+                if l == 1:
+                    break
+                else:
+                    if self.jg[i] != n:
+                        num = self.jg[i]
+                        for j in range(i + 2, i + 4, 2):
+                            if self.jg[j] == num:
+                                l = 1
+            if l == 1:
+                print("Player %d: Two Pair" % (self.n_j))
+                pd = 0
+                c = 1
+                for k in range(0, 14, 2):
+                    if self.jg[k] != n and self.jg[k] != num:
+                        pd += self.jg[k] / (100 * c)
+                        c *= 100
+                p_pts[self.n_j] = 26 + n + (num / 100) + pd
+            else:
+                print("Player %d: Pair" % (self.n_j))
+                pd = 0
+                c = 1
+                for k in range(0, 14, 2):
+                    if self.jg[k] != n:
+                        pd += self.jg[k] / (100 * c)
+                        c *= 100
+                p_pts[self.n_j] = 13 + n + pd
+        else:
+            Ranking(self.jg, self.n_j).high_card()
+            
+            
+    def high_card(self):
+        print("Player %d: High Card" % (self.n_j))
+        pd = 0
+        c = 1
+        for i in range(2, 14, 2):
+            pd += self.jg[i] / (100 * c)
+            c *= 100
+        p_pts[self.n_j] = self.jg[0] + pd
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+p_ativos = [1, 2, 3, 4]
+Aposta = [0]
+
+class Players():
+    def __init__(self, player, A_P, sb, aposta, pronto, check, S_B, Round):
+        self.player = player
+        self.A_P = A_P
+        self.sb = sb
+        self.aposta = aposta
+        self.pronto = pronto
+        self.check = check
+        self.S_B = S_B
+        self.Round = Round
+        
+    def small_blind(self):
+        if self.Round > 1:
+            print("Mesa: ", end = "")
+            for i in range(self.Round + 1):
+                if mesa[i][0] == "1":
+                    if mesa[i][1] == "4":
+                        carta = "A" + mesa[i][2]
+                    elif mesa[i][1] == "3":
+                        carta = "K" + mesa[i][2]
+                    elif mesa[i][1] == "2":
+                        carta = "Q" + mesa[i][2]
+                    elif mesa[i][1] == "1":
+                        carta = "J" + mesa[i][2]
+                    else:
+                        carta = "10" + mesa[i][2]
+                else:
+                    carta = mesa[i]
+                print(carta, end = " ")
+            print()
+        self.S_B += 1
+        if self.S_B == 5:
+            self.S_B = 1
+        while True:
+            if self.S_B not in self.player:
+                self.S_B += 1
+                if self.S_B == 5:
+                    self.S_B = 1
+            else:
+                break
+        print("Player %d" % (self.S_B))
+        print("Mão: ", end = "")
+        q = self.S_B + (self.S_B - 1)
+        for i in range(q - 1, q + 1):
+            if maos_mesa[i][0] == "1":
+                if maos_mesa[i][1] == "4":
+                    carta = "A" + maos_mesa[i][2]
+                elif maos_mesa[i][1] == "3":
+                    carta = "K" + maos_mesa[i][2]
+                elif maos_mesa[i][1] == "2":
+                    carta = "Q" + maos_mesa[i][2]
+                elif maos_mesa[i][1] == "1":
+                    carta = "J" + maos_mesa[i][2]
+                else:
+                    carta = "10" + maos_mesa[i][2]
+            else:
+                carta = maos_mesa[i]
+            print(carta, end = " ")
+        print()
+        self.A_P = self.S_B
+        sbd = input("Small Blind (Check/Bet/Fold): ")
+        if sbd == "Check":
+            self.check = 1
+            self.pronto += 1
+            Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).big_blind()
+        if sbd == "Bet":
+            self.sb = int(input("Quantia para apostar: "))
+            self.pronto = 1
+            self.aposta += self.sb
+        if sbd == "Fold":
+            self.check = 1
+            p_ativos.remove(self.A_P)
+            if len(p_ativos) == 1:
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).wo()
+        Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).big_blind()
+            
+    def big_blind(self):
+        if self.A_P + 1 == 5:
+            self.A_P = 0
+        self.A_P += 1
+        while True:
+            if self.A_P not in self.player:
+                self.A_P += 1
+                if self.A_P == 5:
+                    self.A_P = 1
+            else:
+                break
+        print()
+        if self.Round > 1:
+            print("Mesa: ", end = "")
+            for i in range(self.Round + 1):
+                if mesa[i][0] == "1":
+                    if mesa[i][1] == "4":
+                        carta = "A" + mesa[i][2]
+                    elif mesa[i][1] == "3":
+                        carta = "K" + mesa[i][2]
+                    elif mesa[i][1] == "2":
+                        carta = "Q" + mesa[i][2]
+                    elif mesa[i][1] == "1":
+                        carta = "J" + mesa[i][2]
+                    else:
+                        carta = "10" + mesa[i][2]
+                else:
+                    carta = mesa[i]
+                print(carta, end = " ")
+            print()
+        if self.check == 0:
+            print("Valor da aposta: %d" % (self.sb))
+            print("Soma das apostas: %d" % (self.aposta))
+        print("Player %d" % (self.A_P))
+        print("Mão: ", end = "")
+        q = self.A_P + (self.A_P - 1)
+        for i in range(q - 1, q + 1):
+            if maos_mesa[i][0] == "1":
+                if maos_mesa[i][1] == "4":
+                    carta = "A" + maos_mesa[i][2]
+                elif maos_mesa[i][1] == "3":
+                    carta = "K" + maos_mesa[i][2]
+                elif maos_mesa[i][1] == "2":
+                    carta = "Q" + maos_mesa[i][2]
+                elif maos_mesa[i][1] == "1":
+                    carta = "J" + maos_mesa[i][2]
+                else:
+                    carta = "10" + maos_mesa[i][2]
+            else:
+                carta = maos_mesa[i]
+            print(carta, end = " ")
+        print()
+        if self.check == 1:
+            bbd = input("Big Blind (Check/Bet/Fold): ")
+            if bbd == "Check":
+                self.pronto += 1
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Call()
+            if bbd == "Bet":
+                self.check = 0
+                self.sb = int(input("Quantia para apostar: "))
+                self.pronto = 1
+                self.aposta += self.sb
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
+            if bbd == "Fold":
+                p_ativos.remove(self.A_P)
+                if len(p_ativos) == 1:
+                    Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).wo()
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
+        else:
+            bbd = input("Big Blind (Call/Raise/Fold): ")
+            if bbd == "Call":
+                self.pronto += 1
+                self.aposta += self.sb
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Call()
+            if bbd == "Raise":
+                self.pronto = 1
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Raise()
+            if bbd == "Fold":
+                p_ativos.remove(self.A_P)
+                if len(p_ativos) == 1:
+                    Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).wo()
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Fold()
+            
+    def decisao(self):
+        if self.A_P + 1 == 5:
+            self.A_P = 0
+        self.A_P += 1
+        while True:
+            if self.A_P not in self.player:
+                self.A_P += 1
+                if self.A_P == 5:
+                    self.A_P = 1
+            else:
+                break
+        print()
+        if self.Round > 1:
+            print("Mesa: ", end = "")
+            for i in range(self.Round + 1):
+                if mesa[i][0] == "1":
+                    if mesa[i][1] == "4":
+                        carta = "A" + mesa[i][2]
+                    elif mesa[i][1] == "3":
+                        carta = "K" + mesa[i][2]
+                    elif mesa[i][1] == "2":
+                        carta = "Q" + mesa[i][2]
+                    elif mesa[i][1] == "1":
+                        carta = "J" + mesa[i][2]
+                    else:
+                        carta = "10" + mesa[i][2]
+                else:
+                    carta = mesa[i]
+                print(carta, end = " ")
+            print()
+        if self.check == 1:
+            print("Player %d" % (self.A_P))
+            print("Mão: ", end = "")
+            q = self.A_P + (self.A_P - 1)
+            for i in range(q - 1, q + 1):
+                if maos_mesa[i][0] == "1":
+                    if maos_mesa[i][1] == "4":
+                        carta = "A" + maos_mesa[i][2]
+                    elif maos_mesa[i][1] == "3":
+                        carta = "K" + maos_mesa[i][2]
+                    elif maos_mesa[i][1] == "2":
+                        carta = "Q" + maos_mesa[i][2]
+                    elif maos_mesa[i][1] == "1":
+                        carta = "J" + maos_mesa[i][2]
+                    else:
+                        carta = "10" + maos_mesa[i][2]
+                else:
+                    carta = maos_mesa[i]
+                print(carta, end = " ")
+            print()
+            d = input("(Check/Bet/Fold): ")
+            if d == "Check":
+                self.pronto += 1
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Call()
+            if d == "Bet":
+                self.check = 0
+                self.sb = int(input("Quantia para apostar: "))
+                self.pronto = 1
+                self.aposta += self.sb
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
+            if d == "Fold":
+                p_ativos.remove(self.A_P)
+                if len(p_ativos) == 1:
+                    Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).wo()
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Fold()
+        else:
+            print("Valor da aposta: %d" % (self.sb))
+            print("Soma das apostas: %d" % (self.aposta))
+            print("Player %d" % (self.A_P))
+            print("Mão: ", end = "")
+            q = self.A_P + (self.A_P - 1)
+            for i in range(q - 1, q + 1):
+                if maos_mesa[i][0] == "1":
+                    if maos_mesa[i][1] == "4":
+                        carta = "A" + maos_mesa[i][2]
+                    elif maos_mesa[i][1] == "3":
+                        carta = "K" + maos_mesa[i][2]
+                    elif maos_mesa[i][1] == "2":
+                        carta = "Q" + maos_mesa[i][2]
+                    elif maos_mesa[i][1] == "1":
+                        carta = "J" + maos_mesa[i][2]
+                    else:
+                        carta = "10" + maos_mesa[i][2]
+                else:
+                    carta = maos_mesa[i]
+                print(carta, end = " ")
+            print()
+            d = input("(Call/Raise/Fold): ")
+            if d == "Call":
+                self.pronto += 1
+                self.aposta += self.sb
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Call()
+            if d == "Raise":
+                self.pronto = 1
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Raise()
+            if d == "Fold":
+                p_ativos.remove(self.A_P)
+                if len(p_ativos) == 1:
+                    Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).wo()
+                Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Fold()
+            
+    def Call(self):
+        if self.pronto < len(p_ativos):
+            Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
+        else:
+            print()
+            print("Fim da rodada")
+            Aposta[0] = self.aposta
+            print("Soma das apostas: %d" % (self.aposta))
+            if self.Round == 1:
+                #Flop
+                print("-------")
+                print("Flop")
+                print()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 1, 2).small_blind()
+            elif self.Round == 2:
+                #Turn
+                print("-------")
+                print("Turn")
+                print()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 2, 3).small_blind()
+            elif self.Round == 3:
+                #River
+                print("-------")
+                print("River")
+                print()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 3, 4).small_blind()
+            else:
+                print()
+                print("Resultados: ")
+                Resultados().formar_maos()
+                        
+    def Raise(self):
+        self.sb = int(input("Subir a aposta para (> %d): " % (self.sb)))
+        self.aposta = Aposta[0]
+        self.aposta += self.sb
+        Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
+        
+    def Fold(self):
+        if self.pronto < len(p_ativos):
+            Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
+        else:
+            print("Fim da rodada")
+            Aposta[0] = self.aposta
+            print("Soma das apostas: %d" % (self.aposta))
+            if self.Round == 1:
+                #Flop
+                print("-------")
+                print("Flop")
+                print()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 1, 2).small_blind()
+            elif self.Round == 2:
+                #Turn
+                print("-------")
+                print("Turn")
+                print()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 2, 3).small_blind()
+            elif self.Round == 3:
+                #River
+                print("-------")
+                print("River")
+                print()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 3, 4).small_blind()
+            else:
+                print()
+                print("Resultados: ")
+                Resultados().formar_maos()
+    
+    def wo(self):
+        print("Player %d venceu $%d por desistência dos demais!" % (p_ativos[0], self.aposta))
+        Resultados().fim_de_jogo()
+            
+Cartas(13).construir_deck()
+
+Cartas(13).embaralhar()
+
+#Preflop
+print("Preflop")
+print()
+Players(p_ativos, 0, 0, Aposta[0], 0, 0, 0, 1).small_blind()
+
+
+        
+        
+        
+        
+        
+        
+        
+            
