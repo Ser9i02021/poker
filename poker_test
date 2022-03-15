@@ -1,4 +1,5 @@
 from random import randint
+import sys
 
 mao1 = []
 mao2 = []
@@ -253,6 +254,7 @@ class Resultados():
     def fim_de_jogo(self):
         print()
         print("Fim da partida")
+        sys.exit()
                 
 
 
@@ -620,7 +622,27 @@ class Players():
         self.Round = Round
         
     def small_blind(self):
+        print("""
+
+                
+                
+                
+                
+                
+                """)
         if self.Round > 1:
+            if self.Round == 2:
+                print("-------")
+                print("Flop")
+                print()
+            elif self.Round == 3:
+                print("-------")
+                print("Turn")
+                print()
+            else:
+                print("-------")
+                print("River")
+                print()
             print("Mesa: ", end = "")
             for i in range(self.Round + 1):
                 if mesa[i][0] == "1":
@@ -637,6 +659,10 @@ class Players():
                 else:
                     carta = mesa[i]
                 print(carta, end = " ")
+            print()
+        else:
+            print("-------")
+            print("Preflop")
             print()
         self.S_B += 1
         if self.S_B == 5:
@@ -685,6 +711,14 @@ class Players():
         Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).big_blind()
             
     def big_blind(self):
+        print("""
+
+                
+                
+                
+                
+                
+                """)
         if self.A_P + 1 == 5:
             self.A_P = 0
         self.A_P += 1
@@ -768,6 +802,14 @@ class Players():
                 Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).Fold()
             
     def decisao(self):
+        print("""
+
+                
+                
+                
+                
+                
+                """)
         if self.A_P + 1 == 5:
             self.A_P = 0
         self.A_P += 1
@@ -873,27 +915,24 @@ class Players():
             Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
         else:
             print()
-            print("Fim da rodada")
+            
             Aposta[0] = self.aposta
-            print("Soma das apostas: %d" % (self.aposta))
+            
             if self.Round == 1:
                 #Flop
-                print("-------")
-                print("Flop")
+                
                 print()
                 Players(p_ativos, 0, 0, Aposta[0], 0, 0, 1, 2).small_blind()
             elif self.Round == 2:
                 #Turn
-                print("-------")
-                print("Turn")
+                
                 print()
-                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 2, 3).small_blind()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, self.S_B, 3).small_blind()
             elif self.Round == 3:
                 #River
-                print("-------")
-                print("River")
+                
                 print()
-                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 3, 4).small_blind()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, self.S_B, 4).small_blind()
             else:
                 print()
                 print("Resultados: ")
@@ -909,33 +948,33 @@ class Players():
         if self.pronto < len(p_ativos):
             Players(p_ativos, self.A_P, self.sb, self.aposta, self.pronto, self.check, self.S_B, self.Round).decisao()
         else:
-            print("Fim da rodada")
+            
             Aposta[0] = self.aposta
-            print("Soma das apostas: %d" % (self.aposta))
+            
             if self.Round == 1:
                 #Flop
-                print("-------")
-                print("Flop")
+                
                 print()
                 Players(p_ativos, 0, 0, Aposta[0], 0, 0, 1, 2).small_blind()
             elif self.Round == 2:
                 #Turn
-                print("-------")
-                print("Turn")
+                
                 print()
-                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 2, 3).small_blind()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, self.S_B, 3).small_blind()
             elif self.Round == 3:
                 #River
-                print("-------")
-                print("River")
+                
                 print()
-                Players(p_ativos, 0, 0, Aposta[0], 0, 0, 3, 4).small_blind()
+                Players(p_ativos, 0, 0, Aposta[0], 0, 0, self.S_B, 4).small_blind()
             else:
                 print()
                 print("Resultados: ")
                 Resultados().formar_maos()
     
     def wo(self):
+        print("""
+
+-------                """)
         print("Player %d venceu $%d por desistência dos demais!" % (p_ativos[0], self.aposta))
         Resultados().fim_de_jogo()
             
@@ -944,16 +983,7 @@ Cartas(13).construir_deck()
 Cartas(13).embaralhar()
 
 #Preflop
-print("Preflop")
+
 print()
 Players(p_ativos, 0, 0, Aposta[0], 0, 0, 0, 1).small_blind()
 
-
-        
-        
-        
-        
-        
-        
-        
-            
